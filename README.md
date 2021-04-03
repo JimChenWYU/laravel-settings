@@ -8,7 +8,7 @@ This package allows you to store settings in a repository (database, Redis, ...)
 
 ## Description
 
-> Fork from [spatie/laravel-settings](https://github.com/spatie/laravel-settings), just make it can be run in **PHP7.2** and **Laravel 6.x**.
+> Fork from [spatie/laravel-settings](https://github.com/spatie/laravel-settings), just make it can be run in **PHP7.2**, **Laravel 6.x** and **MySQL 5.6**.
 
 > If you have any questions, idea or bugs, please go to [spatie/laravel-settings](https://github.com/spatie/laravel-settings/issues).
 
