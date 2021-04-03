@@ -10,7 +10,7 @@ class DatabaseSettingsRepository implements SettingsRepository
     /** @var string|\Illuminate\Database\Eloquent\Model */
     protected $propertyModel;
 
-    /** @var string|null  */
+    /** @var string|null */
     protected $connection;
 
     public function __construct(array $config)

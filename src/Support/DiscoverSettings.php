@@ -9,16 +9,16 @@ use Symfony\Component\Finder\Finder;
 
 class DiscoverSettings
 {
-    /** @var array  */
+    /** @var array */
     protected $directories = [];
 
-    /** @var string  */
+    /** @var string */
     protected $basePath = '';
 
-    /** @var string  */
+    /** @var string */
     protected $rootNamespace = '';
 
-    /** @var array  */
+    /** @var array */
     protected $ignoredFiles = [];
 
     public function __construct()

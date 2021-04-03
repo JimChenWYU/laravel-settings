@@ -40,7 +40,7 @@ class PropertyReflectorTest extends TestCase
     {
         $reflection = $this->fakeReflection(function () {
             return new class {
-                /** @var int  */
+                /** @var int */
                 public $property;
             };
         });
@@ -64,7 +64,7 @@ class PropertyReflectorTest extends TestCase
 
         $reflection = $this->fakeReflection(function () {
             return new class {
-                /** @var bool  */
+                /** @var bool */
                 public $property;
             };
         });
@@ -76,7 +76,7 @@ class PropertyReflectorTest extends TestCase
 
         $reflection = $this->fakeReflection(function () {
             return new class {
-                /** @var string  */
+                /** @var string */
                 public $property;
             };
         });
@@ -88,7 +88,7 @@ class PropertyReflectorTest extends TestCase
 
         $reflection = $this->fakeReflection(function () {
             return new class {
-                /** @var array  */
+                /** @var array */
                 public $property;
             };
         });
@@ -267,7 +267,7 @@ class PropertyReflectorTest extends TestCase
     {
         $reflection = $this->fakeReflection(function () {
             return new class {
-                /** @var DateTime|null  */
+                /** @var DateTime|null */
                 public $property;
             };
         });

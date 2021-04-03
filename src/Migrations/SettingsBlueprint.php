@@ -6,10 +6,10 @@ use Closure;
 
 class SettingsBlueprint
 {
-    /** @var string  */
+    /** @var string */
     protected $group;
 
-    /** @var SettingsMigrator  */
+    /** @var SettingsMigrator */
     protected $migrator;
 
     public function __construct(string $group, SettingsMigrator $migrator)

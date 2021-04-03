@@ -6,9 +6,9 @@ use Spatie\LaravelSettings\Settings;
 
 class DummySimpleSettings extends Settings
 {
-    /** @var string  */
+    /** @var string */
     public $name;
-    /** @var string  */
+    /** @var string */
     public $description;
 
     public static function group(): string

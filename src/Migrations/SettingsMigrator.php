@@ -12,7 +12,7 @@ use Spatie\LaravelSettings\Support\Crypto;
 
 class SettingsMigrator
 {
-    /** @var SettingsRepository  */
+    /** @var SettingsRepository */
     protected $repository;
 
     public function __construct(SettingsRepository $connection)

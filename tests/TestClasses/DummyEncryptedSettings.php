@@ -10,10 +10,10 @@ class DummyEncryptedSettings extends Settings
     /** @var string */
     public $string;
 
-    /** @var string|null  */
+    /** @var string|null */
     public $nullable;
 
-    /** @var DateTime  */
+    /** @var DateTime */
     public $cast;
 
     public static function group(): string

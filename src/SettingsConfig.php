@@ -28,7 +28,7 @@ class SettingsConfig
     /** @var string[]|\Illuminate\Support\Collection */
     private $locked;
 
-    /** @var \Spatie\LaravelSettings\SettingsRepositories\SettingsRepository  */
+    /** @var \Spatie\LaravelSettings\SettingsRepositories\SettingsRepository */
     private $repository;
 
     public function __construct(string $settingsClass)

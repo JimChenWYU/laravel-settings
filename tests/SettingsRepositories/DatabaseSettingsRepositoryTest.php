@@ -12,7 +12,7 @@ use Spatie\TemporaryDirectory\TemporaryDirectory;
 
 class DatabaseSettingsRepositoryTest extends TestCase
 {
-    /** @var DatabaseSettingsRepository  */
+    /** @var DatabaseSettingsRepository */
     private $repository;
 
     protected function setUp(): void

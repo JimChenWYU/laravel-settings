@@ -2,20 +2,20 @@
 
 namespace Spatie\LaravelSettings;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Spatie\LaravelSettings\Exceptions\CouldNotUnserializeSettings;
 use Spatie\LaravelSettings\Exceptions\SettingsCacheDisabled;
 
 class SettingsCache
 {
-    /** @var bool  */
+    /** @var bool */
     private $enabled;
 
-    /** @var string|null  */
+    /** @var string|null */
     private $store;
 
-    /** @var string|null  */
+    /** @var string|null */
     private $prefix;
 
     public function __construct(

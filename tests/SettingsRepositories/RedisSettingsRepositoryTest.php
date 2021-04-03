@@ -8,7 +8,7 @@ use Spatie\LaravelSettings\Tests\TestCase;
 
 class RedisSettingsRepositoryTest extends TestCase
 {
-    /** @var RedisSettingsRepository  */
+    /** @var RedisSettingsRepository */
     private $repository;
 
     /** @var mixed|\Redis|\Predis\Client */

@@ -4,7 +4,7 @@ namespace Spatie\LaravelSettings\Tests\TestClasses;
 
 class FakeAction
 {
-    /** @var DummySimpleSettings  */
+    /** @var DummySimpleSettings */
     private $settings;
 
     public function __construct(DummySimpleSettings $settings)

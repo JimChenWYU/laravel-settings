@@ -32,7 +32,7 @@ class SettingsCastFactoryTest extends TestCase
     public function it_can_resolve_a_global_cast()
     {
         $fake = new class {
-            /** @var DateTime  */
+            /** @var DateTime */
             public $datetime;
         };
 
@@ -121,7 +121,7 @@ class SettingsCastFactoryTest extends TestCase
     public function it_can_have_a_nullable_cast()
     {
         $fake = new class {
-            /** @var DateTime|null  */
+            /** @var DateTime|null */
             public $array;
         };
 
@@ -153,7 +153,7 @@ class SettingsCastFactoryTest extends TestCase
         $this->withoutGlobalCasts();
 
         $fake = new class {
-            /** @var DateTime  */
+            /** @var DateTime */
             public $datetime;
         };
 
@@ -186,7 +186,7 @@ class SettingsCastFactoryTest extends TestCase
     public function it_can_create_a_local_cast_with_an_already_constructed_cast()
     {
         $fake = new class {
-            /** @var DummyDto  */
+            /** @var DummyDto */
             public $dto;
         };
 

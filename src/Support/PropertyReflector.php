@@ -53,12 +53,14 @@ class PropertyReflector
             if ($types->count() === 1) {
                 if (class_exists($types->first()) || interface_exists($types->first())) {
                     $type = new Object_(new Fqsen('\\' . ltrim($types->first(), '\\')));
+
                     return $type;
                 }
             }
 
             if ($types->count() === 2 && $types->contains('null')) {
                 $type = new Object_(new Fqsen('\\' . ltrim($types->first(), '\\')));
+
                 return new Nullable($type);
             }
 

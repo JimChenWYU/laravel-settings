@@ -13,7 +13,7 @@ class MakeSettingsMigrationCommand extends Command
 
     protected $description = 'Create a new settings migration file';
 
-    /** @var Filesystem  */
+    /** @var Filesystem */
     protected $files;
 
     public function __construct(Filesystem $files)

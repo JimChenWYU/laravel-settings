@@ -11,7 +11,7 @@ use Spatie\LaravelSettings\Tests\TestClasses\FakeAction;
 
 class SettingsContainerTest extends TestCase
 {
-    /** @var SettingsMigrator  */
+    /** @var SettingsMigrator */
     private $migrator;
 
     protected function setUp() : void

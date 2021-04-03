@@ -4,7 +4,7 @@ namespace Spatie\LaravelSettings\SettingsCasts;
 
 class ArraySettingsCast implements SettingsCast
 {
-    /** @var SettingsCast  */
+    /** @var SettingsCast */
     protected $cast;
 
     public function __construct(SettingsCast $cast)

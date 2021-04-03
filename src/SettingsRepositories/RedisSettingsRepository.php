@@ -9,7 +9,7 @@ class RedisSettingsRepository implements SettingsRepository
     /** @var \Redis */
     protected $connection;
 
-    /** @var string  */
+    /** @var string */
     protected $prefix;
 
     public function __construct(array $config, RedisManager $connection)

@@ -11,7 +11,7 @@ use Spatie\LaravelSettings\SettingsRepositories\DatabaseSettingsRepository;
 
 class SettingsMigratorTest extends TestCase
 {
-    /** @var SettingsMigrator  */
+    /** @var SettingsMigrator */
     private $settingsMigrator;
 
     protected function setUp(): void

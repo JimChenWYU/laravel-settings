@@ -6,7 +6,7 @@ use Spatie\LaravelSettings\Settings;
 
 class SettingsSaved
 {
-    /** @var Settings  */
+    /** @var Settings */
     public $settings;
 
     public function __construct(Settings $settings)

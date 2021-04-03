@@ -2,7 +2,6 @@
 
 namespace Spatie\LaravelSettings\Tests\TestClasses;
 
-use Carbon\Carbon;
 use DateTimeImmutable;
 use DateTimeZone;
 use Spatie\LaravelSettings\Settings;
@@ -10,17 +9,17 @@ use Spatie\LaravelSettings\SettingsCasts\DtoCast;
 
 class DummySettings extends Settings
 {
-    /** @var string  */
+    /** @var string */
     public $string;
-    /** @var bool  */
+    /** @var bool */
     public $bool;
-    /** @var int  */
+    /** @var int */
     public $int;
-    /** @var array  */
+    /** @var array */
     public $array;
-    /** @var string|null  */
+    /** @var string|null */
     public $nullable_string;
-    /** @var DummyDto  */
+    /** @var DummyDto */
     public $dto;
 
     /** @var \Spatie\LaravelSettings\Tests\TestClasses\DummyDto[] */
@@ -30,11 +29,11 @@ class DummySettings extends Settings
 //    /** @var \Spatie\LaravelSettings\Tests\TestClasses\DummyDto[] */
 //    public array $dto_collection;
 
-    /** @var DateTimeImmutable  */
+    /** @var DateTimeImmutable */
     public $date_time;
     /** @var \Carbon\Carbon */
     public $carbon;
-    /** @var DateTimeZone|null  */
+    /** @var DateTimeZone|null */
     public $nullable_date_time_zone;
 
     public static function group(): string

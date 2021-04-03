@@ -7,10 +7,10 @@ use Spatie\LaravelSettings\Settings;
 
 class SavingSettings
 {
-    /** @var Settings  */
+    /** @var Settings */
     public $settings;
 
-    /** @var Collection  */
+    /** @var Collection */
     public $properties;
 
     public function __construct(

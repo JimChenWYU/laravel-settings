@@ -11,7 +11,7 @@ use Exception;
 
 class DateTimeInterfaceCast implements SettingsCast
 {
-    /** @var string  */
+    /** @var string */
     protected $type;
 
     public function __construct(?string $type)

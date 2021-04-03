@@ -21,10 +21,10 @@ abstract class Settings implements Arrayable, Jsonable, Responsable, Serializabl
     /** @var \Spatie\LaravelSettings\SettingsConfig */
     private $config;
 
-    /** @var bool  */
+    /** @var bool */
     private $loaded = false;
 
-    /** @var bool  */
+    /** @var bool */
     private $configInitialized = false;
 
     abstract public static function group(): string;
@@ -198,7 +198,7 @@ abstract class Settings implements Arrayable, Jsonable, Responsable, Serializabl
             return $this;
         }
 
-        if (!isset($values)) {
+        if (! isset($values)) {
             $values = $this->mapper->load(static::class);
         }
 
