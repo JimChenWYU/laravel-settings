@@ -67,7 +67,7 @@ class LaravelSettingsServiceProvider extends ServiceProvider
         $this->app->singleton(SettingsMapper::class);
 
         $settingsContainer = app(SettingsContainer::class);
-$settingsContainer->registerBindings();
+        $settingsContainer->registerBindings();
     }
 
     private function removeMigrationsWhenSchemaLoaded(SchemaLoaded $event)
