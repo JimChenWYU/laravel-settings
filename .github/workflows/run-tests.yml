@@ -56,6 +56,6 @@ jobs:
           REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
 
       - name: Execute tests - predis
-          run: vendor/bin/phpunit -c phpunit_predis.xml
-          env:
-            REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
+        run: vendor/bin/phpunit -c phpunit_predis.xml
+        env:
+          REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
