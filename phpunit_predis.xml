@@ -19,6 +19,6 @@
     <junit outputFile="build/report.junit.xml"/>
   </logging>
   <php>
-    <env name="REDIS_CLIENT" value="phpredis"/>
+    <env name="REDIS_CLIENT" value="predis"/>
   </php>
 </phpunit>
