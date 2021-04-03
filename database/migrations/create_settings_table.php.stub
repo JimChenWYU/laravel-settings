@@ -9,12 +9,12 @@ class CreateSettingsTable extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table): void {
-            $table->id();
+            $table->bigIncrements('id');
 
             $table->string('group')->index();
             $table->string('name');
             $table->boolean('locked');
-            $table->json('payload');
+            $table->text('payload');
 
             $table->timestamps();
         });

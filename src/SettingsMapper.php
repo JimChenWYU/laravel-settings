@@ -10,7 +10,7 @@ use Spatie\LaravelSettings\Support\Crypto;
 class SettingsMapper
 {
     /** @var array<string, \Spatie\LaravelSettings\SettingsConfig> */
-    private array $configs = [];
+    private $configs = [];
 
     public function initialize(string $settingsClass): SettingsConfig
     {
@@ -53,7 +53,9 @@ class SettingsMapper
         $this->ensureNoMissingSettings($config, $properties, 'saving');
 
         $changedProperties = $properties
-            ->reject(fn ($payload, string $name) => $config->isLocked($name))
+            ->reject(function ($payload, string $name) use ($config) {
+                return $config->isLocked($name);
+            })
             ->each(function ($payload, string $name) use ($config) {
                 if ($cast = $config->getCast($name)) {
                     $payload = $cast->set($payload);
@@ -80,7 +82,9 @@ class SettingsMapper
         $config = $this->getConfig($settingsClass);
 
         return collect($config->getRepository()->getPropertiesInGroup($config->getGroup()))
-            ->filter(fn ($payload, string $name) => $names->contains($name))
+            ->filter(function ($payload, string $name) use ($names) {
+                return $names->contains($name);
+            })
             ->map(function ($payload, string $name) use ($config) {
                 if ($config->isEncrypted($name)) {
                     $payload = Crypto::decrypt($payload);

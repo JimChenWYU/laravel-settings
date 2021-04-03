@@ -2,15 +2,15 @@
 
 namespace Spatie\LaravelSettings\Tests;
 
-use Cache;
+use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use DateTime;
 use DateTimeImmutable;
 use DateTimeZone;
-use DB;
+use Illuminate\Support\Facades\DB;
 use ErrorException;
-use Event;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Events\SchemaLoaded;
 use Illuminate\Support\Str;
 use Spatie\LaravelSettings\Events\LoadingSettings;
@@ -33,7 +33,8 @@ class SettingsTest extends TestCase
 {
     use MatchesSnapshots;
 
-    private SettingsMigrator $migrator;
+    /** @var SettingsMigrator  */
+    private $migrator;
 
     protected function setUp(): void
     {
@@ -446,14 +447,15 @@ class SettingsTest extends TestCase
             ->assertDatabaseHas('migrations', ['migration' => '2018_11_21_091111_create_fake_settings'])
             ->assertDatabaseHas('migrations', ['migration' => '2018_11_21_091111_create_fake_table']);
 
-        event(new SchemaLoaded(
-            DB::connection(),
-            'fake-path'
-        ));
-
-        $this
-            ->assertDatabaseMissing('migrations', ['migration' => '2018_11_21_091111_create_fake_settings'])
-            ->assertDatabaseHas('migrations', ['migration' => '2018_11_21_091111_create_fake_table']);
+        if (class_exists('Illuminate\Database\Events\SchemaLoaded')) {
+            event(new SchemaLoaded(
+                DB::connection(),
+                'fake-path'
+            ));
+            $this
+                ->assertDatabaseMissing('migrations', ['migration' => '2018_11_21_091111_create_fake_settings'])
+                ->assertDatabaseHas('migrations', ['migration' => '2018_11_21_091111_create_fake_table']);
+        }
     }
 
     /**

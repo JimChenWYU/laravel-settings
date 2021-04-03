@@ -23,8 +23,10 @@ class PropertyReflectorTest extends TestCase
     /** @test */
     public function it_wont_reflect_non_typed_properties()
     {
-        $reflection = $this->fakeReflection(fn () => new class {
-            public $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -36,8 +38,11 @@ class PropertyReflectorTest extends TestCase
     /** @test */
     public function it_wont_reflect_build_in_typed_properties()
     {
-        $reflection = $this->fakeReflection(fn () => new class {
-            public int $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var int  */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -45,8 +50,11 @@ class PropertyReflectorTest extends TestCase
             PropertyReflector::resolveType($reflection)
         );
 
-        $reflection = $this->fakeReflection(fn () => new class {
-            public float $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var float */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -54,8 +62,11 @@ class PropertyReflectorTest extends TestCase
             PropertyReflector::resolveType($reflection)
         );
 
-        $reflection = $this->fakeReflection(fn () => new class {
-            public bool $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var bool  */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -63,8 +74,11 @@ class PropertyReflectorTest extends TestCase
             PropertyReflector::resolveType($reflection)
         );
 
-        $reflection = $this->fakeReflection(fn () => new class {
-            public string $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var string  */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -72,8 +86,11 @@ class PropertyReflectorTest extends TestCase
             PropertyReflector::resolveType($reflection)
         );
 
-        $reflection = $this->fakeReflection(fn () => new class {
-            public array $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var array  */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -85,8 +102,11 @@ class PropertyReflectorTest extends TestCase
     /** @test */
     public function it_can_reflect_property_types()
     {
-        $reflection = $this->fakeReflection(fn () => new class {
-            public DummyDto $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var \Spatie\LaravelSettings\Tests\TestClasses\DummyDto */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -98,9 +118,11 @@ class PropertyReflectorTest extends TestCase
     /** @test */
     public function it_can_reflect_docblock_types()
     {
-        $reflection = $this->fakeReflection(fn () => new class {
-            /** @var \Spatie\LaravelSettings\Tests\TestClasses\DummyDto */
-            public DummyDto $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var \Spatie\LaravelSettings\Tests\TestClasses\DummyDto */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -108,9 +130,11 @@ class PropertyReflectorTest extends TestCase
             PropertyReflector::resolveType($reflection)
         );
 
-        $reflection = $this->fakeReflection(fn () => new class {
-            /** @var \Spatie\LaravelSettings\Tests\TestClasses\DummyDto */
-            public $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var \Spatie\LaravelSettings\Tests\TestClasses\DummyDto */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -122,9 +146,11 @@ class PropertyReflectorTest extends TestCase
     /** @test */
     public function it_can_reflect_arrays()
     {
-        $reflection = $this->fakeReflection(fn () => new class {
-            /** @var int[] */
-            public $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var int[] */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -132,9 +158,11 @@ class PropertyReflectorTest extends TestCase
             PropertyReflector::resolveType($reflection)
         );
 
-        $reflection = $this->fakeReflection(fn () => new class {
-            /** @var array<string, int> */
-            public $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var array<string, int> */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -142,9 +170,11 @@ class PropertyReflectorTest extends TestCase
             PropertyReflector::resolveType($reflection)
         );
 
-        $reflection = $this->fakeReflection(fn () => new class {
-            /** @var int[] */
-            public array $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var int[] */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -156,9 +186,11 @@ class PropertyReflectorTest extends TestCase
     /** @test */
     public function it_can_reflect_arrays_with_different_types()
     {
-        $reflection = $this->fakeReflection(fn () => new class {
-            /** @var int[] */
-            public $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var int[] */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -166,9 +198,11 @@ class PropertyReflectorTest extends TestCase
             PropertyReflector::resolveType($reflection)
         );
 
-        $reflection = $this->fakeReflection(fn () => new class {
-            /** @var string[] */
-            public $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var string[] */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -176,9 +210,11 @@ class PropertyReflectorTest extends TestCase
             PropertyReflector::resolveType($reflection)
         );
 
-        $reflection = $this->fakeReflection(fn () => new class {
-            /** @var float[] */
-            public $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var float[] */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -186,9 +222,11 @@ class PropertyReflectorTest extends TestCase
             PropertyReflector::resolveType($reflection)
         );
 
-        $reflection = $this->fakeReflection(fn () => new class {
-            /** @var bool[] */
-            public $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var bool[] */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -196,9 +234,11 @@ class PropertyReflectorTest extends TestCase
             PropertyReflector::resolveType($reflection)
         );
 
-        $reflection = $this->fakeReflection(fn () => new class {
-            /** @var DateTime[] */
-            public $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var DateTime[] */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -212,9 +252,11 @@ class PropertyReflectorTest extends TestCase
     {
         $this->expectException(Exception::class);
 
-        $reflection = $this->fakeReflection(fn () => new class {
-            /** @var self[] */
-            public $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var self[] */
+                public $property;
+            };
         });
 
         PropertyReflector::resolveType($reflection);
@@ -223,8 +265,11 @@ class PropertyReflectorTest extends TestCase
     /** @test */
     public function it_can_handle_a_nullable_type()
     {
-        $reflection = $this->fakeReflection(fn () => new class {
-            public ?DateTime $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var DateTime|null  */
+                public $property;
+            };
         });
 
         $this->assertEquals(
@@ -236,9 +281,11 @@ class PropertyReflectorTest extends TestCase
     /** @test */
     public function it_can_handle_a_nullable_docblock_type()
     {
-        $reflection = $this->fakeReflection(fn () => new class {
-            /** @var ?DateTime */
-            public $property;
+        $reflection = $this->fakeReflection(function () {
+            return new class {
+                /** @var DateTime|null */
+                public $property;
+            };
         });
 
         $this->assertEquals(

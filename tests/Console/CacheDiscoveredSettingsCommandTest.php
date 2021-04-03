@@ -12,7 +12,8 @@ class CacheDiscoveredSettingsCommandTest extends TestCase
 {
     use MatchesSnapshots;
 
-    private SettingsContainer $container;
+    /** @var SettingsContainer  */
+    private $container;
 
     public function setUp(): void
     {

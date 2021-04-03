@@ -6,9 +6,11 @@ use Illuminate\Support\Collection;
 
 class LoadingSettings
 {
-    public string $settingsClass;
+    /** @var string  */
+    public $settingsClass;
 
-    public Collection $properties;
+    /** @var Collection  */
+    public $properties;
 
     public function __construct(string $settingsClass, Collection $properties)
     {

@@ -15,13 +15,17 @@ use Spatie\LaravelSettings\Events\SettingsSaved;
 
 abstract class Settings implements Arrayable, Jsonable, Responsable, Serializable
 {
-    private SettingsMapper $mapper;
+    /** @var \Spatie\LaravelSettings\SettingsMapper */
+    private $mapper;
 
-    private SettingsConfig $config;
+    /** @var \Spatie\LaravelSettings\SettingsConfig */
+    private $config;
 
-    private bool $loaded = false;
+    /** @var bool  */
+    private $loaded = false;
 
-    private bool $configInitialized = false;
+    /** @var bool  */
+    private $configInitialized = false;
 
     abstract public static function group(): string;
 
@@ -52,7 +56,9 @@ abstract class Settings implements Arrayable, Jsonable, Responsable, Serializabl
         $propertiesToLoad = $settingsMapper->initialize(static::class)
             ->getReflectedProperties()
             ->keys()
-            ->reject(fn (string $name) => array_key_exists($name, $values));
+            ->reject(function (string $name) use ($values) {
+                return array_key_exists($name, $values);
+            });
 
         $mergedValues = $settingsMapper
             ->fetchProperties(static::class, $propertiesToLoad)
@@ -151,9 +157,11 @@ abstract class Settings implements Arrayable, Jsonable, Responsable, Serializabl
 
         return $this->config
             ->getReflectedProperties()
-            ->mapWithKeys(fn (ReflectionProperty $property) => [
-                $property->getName() => $this->{$property->getName()},
-            ]);
+            ->mapWithKeys(function (ReflectionProperty $property) {
+                return [
+                    $property->getName() => $this->{$property->getName()},
+                ];
+            });
     }
 
     public function toArray(): array
@@ -190,7 +198,9 @@ abstract class Settings implements Arrayable, Jsonable, Responsable, Serializabl
             return $this;
         }
 
-        $values ??= $this->mapper->load(static::class);
+        if (!isset($values)) {
+            $values = $this->mapper->load(static::class);
+        }
 
         $this->loaded = true;
         $this->fill($values);

@@ -2,18 +2,21 @@
 
 namespace Spatie\LaravelSettings;
 
-use Cache;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Collection;
 use Spatie\LaravelSettings\Exceptions\CouldNotUnserializeSettings;
 use Spatie\LaravelSettings\Exceptions\SettingsCacheDisabled;
 
 class SettingsCache
 {
-    private bool $enabled;
+    /** @var bool  */
+    private $enabled;
 
-    private ?string $store;
+    /** @var string|null  */
+    private $store;
 
-    private ?string $prefix;
+    /** @var string|null  */
+    private $prefix;
 
     public function __construct(
         bool $enabled,
@@ -74,8 +77,12 @@ class SettingsCache
     {
         app(SettingsContainer::class)
             ->getSettingClasses()
-            ->map(fn (string $class) => $this->resolveCacheKey($class))
-            ->pipe(fn (Collection $keys) => Cache::store($this->store)->deleteMultiple($keys));
+            ->map(function (string $class) {
+                return $this->resolveCacheKey($class);
+            })
+            ->pipe(function (Collection $keys) {
+                return Cache::store($this->store)->deleteMultiple($keys);
+            });
     }
 
     private function resolveCacheKey(string $settingsClass): string

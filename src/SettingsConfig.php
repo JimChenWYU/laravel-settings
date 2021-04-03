@@ -14,21 +14,22 @@ use Spatie\LaravelSettings\SettingsRepositories\SettingsRepository;
 class SettingsConfig
 {
     /** @var string|\Spatie\LaravelSettings\Settings */
-    private string $settingsClass;
+    private $settingsClass;
 
     /** @var array<string, ?\Spatie\LaravelSettings\SettingsCasts\SettingsCast>|\Illuminate\Support\Collection */
-    private Collection $casts;
+    private $casts;
 
     /** @var array<string, \ReflectionProperty>|\Illuminate\Support\Collection */
-    private Collection $reflectionProperties;
+    private $reflectionProperties;
 
     /** @var string[]|\Illuminate\Support\Collection */
-    private Collection $encrypted;
+    private $encrypted;
 
     /** @var string[]|\Illuminate\Support\Collection */
-    private Collection $locked;
+    private $locked;
 
-    private SettingsRepository $repository;
+    /** @var \Spatie\LaravelSettings\SettingsRepositories\SettingsRepository  */
+    private $repository;
 
     public function __construct(string $settingsClass)
     {
@@ -40,13 +41,17 @@ class SettingsConfig
 
         $this->reflectionProperties = collect(
             (new ReflectionClass($settingsClass))->getProperties(ReflectionProperty::IS_PUBLIC)
-        )->mapWithKeys(fn (ReflectionProperty $property) => [$property->getName() => $property]);
+        )->mapWithKeys(function (ReflectionProperty $property) {
+            return [$property->getName() => $property];
+        });
 
         $this->casts = $this->reflectionProperties
-            ->map(fn (ReflectionProperty $reflectionProperty) => SettingsCastFactory::resolve(
-                $reflectionProperty,
-                $this->settingsClass::casts()
-            ));
+            ->map(function (ReflectionProperty $reflectionProperty) {
+                return SettingsCastFactory::resolve(
+                    $reflectionProperty,
+                    $this->settingsClass::casts()
+                );
+            });
 
         $this->encrypted = collect($this->settingsClass::encrypted());
 

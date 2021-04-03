@@ -8,9 +8,11 @@ use Spatie\LaravelSettings\SettingsRepositories\DatabaseSettingsRepository;
 
 class SettingsBlueprintTest extends TestCase
 {
-    private SettingsMigrator $migrator;
+    /** @var SettingsMigrator */
+    private $migrator;
 
-    private SettingsBlueprint $blueprint;
+    /** @var SettingsBlueprint */
+    private $blueprint;
 
     protected function setUp(): void
     {
@@ -57,7 +59,9 @@ class SettingsBlueprintTest extends TestCase
     {
         $this->migrator->add('test.property', 'payload');
 
-        $this->blueprint->update('property', fn () => 'otherPayload');
+        $this->blueprint->update('property', function () {
+            return 'otherPayload';
+        });
 
         $this->assertDatabaseHasSetting('test.property', 'otherPayload');
     }
@@ -75,7 +79,9 @@ class SettingsBlueprintTest extends TestCase
     {
         $this->blueprint->addEncrypted('property', 'payload');
 
-        $this->blueprint->updateEncrypted('property', fn () => 'otherPayload');
+        $this->blueprint->updateEncrypted('property', function () {
+            return 'otherPayload';
+        });
 
         $this->assertDatabaseHasEncryptedSetting('test.property', 'otherPayload');
     }

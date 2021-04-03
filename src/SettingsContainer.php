@@ -11,9 +11,11 @@ use Spatie\LaravelSettings\Support\DiscoverSettings;
 
 class SettingsContainer
 {
-    protected Container $container;
+    /** @var Container  */
+    protected $container;
 
-    protected static ?Collection $settingsClasses = null;
+    /** @var Collection|null  */
+    protected static $settingsClasses = null;
 
     public function __construct(Container $container)
     {

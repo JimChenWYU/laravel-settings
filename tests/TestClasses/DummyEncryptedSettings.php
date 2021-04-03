@@ -7,11 +7,14 @@ use Spatie\LaravelSettings\Settings;
 
 class DummyEncryptedSettings extends Settings
 {
-    public string $string;
+    /** @var string */
+    public $string;
 
-    public ?string $nullable;
+    /** @var string|null  */
+    public $nullable;
 
-    public DateTime $cast;
+    /** @var DateTime  */
+    public $cast;
 
     public static function group(): string
     {

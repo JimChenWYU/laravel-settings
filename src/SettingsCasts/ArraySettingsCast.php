@@ -4,7 +4,8 @@ namespace Spatie\LaravelSettings\SettingsCasts;
 
 class ArraySettingsCast implements SettingsCast
 {
-    protected SettingsCast $cast;
+    /** @var SettingsCast  */
+    protected $cast;
 
     public function __construct(SettingsCast $cast)
     {
@@ -19,7 +20,9 @@ class ArraySettingsCast implements SettingsCast
     public function get($payload): array
     {
         return array_map(
-            fn ($data) => $this->cast->get($data),
+            function ($data) {
+                return $this->cast->get($data);
+            },
             $payload
         );
     }
@@ -27,7 +30,9 @@ class ArraySettingsCast implements SettingsCast
     public function set($payload)
     {
         return array_map(
-            fn ($data) => $this->cast->set($data),
+            function ($data) {
+                return $this->cast->set($data);
+            },
             $payload
         );
     }

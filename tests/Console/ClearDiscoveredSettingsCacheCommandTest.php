@@ -9,7 +9,8 @@ use Spatie\LaravelSettings\Tests\TestClasses\DummySimpleSettings;
 
 class ClearDiscoveredSettingsCacheCommandTest extends TestCase
 {
-    private SettingsContainer $settingsContainer;
+    /** @var SettingsContainer */
+    private $settingsContainer;
 
     public function setUp(): void
     {
@@ -32,6 +33,6 @@ class ClearDiscoveredSettingsCacheCommandTest extends TestCase
 
         $this->artisan('settings:clear-discovered')->assertExitCode(0);
 
-        $this->assertFileDoesNotExist(config('settings.discovered_settings_cache_path').'/settings.php');
+        $this->assertFileNotExists(config('settings.discovered_settings_cache_path').'/settings.php');
     }
 }

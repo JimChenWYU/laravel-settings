@@ -12,7 +12,8 @@ use Spatie\TemporaryDirectory\TemporaryDirectory;
 
 class DatabaseSettingsRepositoryTest extends TestCase
 {
-    private DatabaseSettingsRepository $repository;
+    /** @var DatabaseSettingsRepository  */
+    private $repository;
 
     protected function setUp(): void
     {
@@ -310,7 +311,7 @@ class DatabaseSettingsRepositoryTest extends TestCase
         ]);
 
         Schema::connection('other')->create('settings', function (Blueprint $table): void {
-            $table->id();
+            $table->bigIncrements('id');
 
             $table->string('group')->index();
             $table->string('name');

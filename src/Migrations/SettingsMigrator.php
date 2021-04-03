@@ -12,7 +12,8 @@ use Spatie\LaravelSettings\Support\Crypto;
 
 class SettingsMigrator
 {
-    protected SettingsRepository $repository;
+    /** @var SettingsRepository  */
+    protected $repository;
 
     public function __construct(SettingsRepository $connection)
     {
@@ -95,12 +96,16 @@ class SettingsMigrator
 
     public function encrypt(string $property): void
     {
-        $this->update($property, fn ($payload) => Crypto::encrypt($payload));
+        $this->update($property, function ($payload) {
+            return Crypto::encrypt($payload);
+        });
     }
 
     public function decrypt(string $property): void
     {
-        $this->update($property, fn ($payload) => Crypto::decrypt($payload));
+        $this->update($property, function ($payload) {
+            return Crypto::decrypt($payload);
+        });
     }
 
     public function inGroup(string $group, Closure $closure): void

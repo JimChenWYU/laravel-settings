@@ -10,30 +10,32 @@ use Spatie\LaravelSettings\SettingsCasts\DtoCast;
 
 class DummySettings extends Settings
 {
-    public string $string;
-
-    public bool $bool;
-
-    public int $int;
-
-    public array $array;
-
-    public ?string $nullable_string;
-
-    public DummyDto $dto;
+    /** @var string  */
+    public $string;
+    /** @var bool  */
+    public $bool;
+    /** @var int  */
+    public $int;
+    /** @var array  */
+    public $array;
+    /** @var string|null  */
+    public $nullable_string;
+    /** @var DummyDto  */
+    public $dto;
 
     /** @var \Spatie\LaravelSettings\Tests\TestClasses\DummyDto[] */
-    public array $dto_array;
+    public $dto_array;
 
     // Todo: enable this later
 //    /** @var \Spatie\LaravelSettings\Tests\TestClasses\DummyDto[] */
 //    public array $dto_collection;
 
-    public DateTimeImmutable $date_time;
-
-    public Carbon $carbon;
-
-    public ?DateTimeZone $nullable_date_time_zone;
+    /** @var DateTimeImmutable  */
+    public $date_time;
+    /** @var \Carbon\Carbon */
+    public $carbon;
+    /** @var DateTimeZone|null  */
+    public $nullable_date_time_zone;
 
     public static function group(): string
     {

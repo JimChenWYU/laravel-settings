@@ -9,7 +9,7 @@ class CreateFakeTable extends Migration
     public function up()
     {
         Schema::create('fake-table', function (Blueprint $table): void {
-            $table->id();
+            $table->bigIncrements('id');
 
             $table->timestamps();
         });

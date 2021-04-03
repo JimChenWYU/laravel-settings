@@ -8,9 +8,10 @@ use Spatie\LaravelSettings\Tests\TestCase;
 
 class RedisSettingsRepositoryTest extends TestCase
 {
-    private RedisSettingsRepository $repository;
+    /** @var RedisSettingsRepository  */
+    private $repository;
 
-    /** @var mixed|\Redis */
+    /** @var mixed|\Redis|\Predis\Client */
     private $client;
 
     protected function setUp(): void
@@ -135,7 +136,12 @@ class RedisSettingsRepositoryTest extends TestCase
 
         $this->repository->deleteProperty('test', 'a');
 
-        $this->assertFalse($this->client->hExists('test', 'a'));
+        if ($this->client instanceof \Redis) {
+            $this->assertFalse($this->client->hExists('test', 'a'));
+        }
+        if ($this->client instanceof \Predis\Client) {
+            $this->assertEquals(0, $this->client->hExists('test', 'a'));
+        }
     }
 
 

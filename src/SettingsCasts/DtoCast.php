@@ -7,7 +7,8 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class DtoCast implements SettingsCast
 {
-    protected string $type;
+    /** @var string  */
+    protected $type;
 
     public function __construct(?string $type)
     {

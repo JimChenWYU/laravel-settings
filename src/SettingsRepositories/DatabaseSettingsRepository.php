@@ -2,15 +2,16 @@
 
 namespace Spatie\LaravelSettings\SettingsRepositories;
 
-use DB;
+use Illuminate\Support\Facades\DB;
 use Spatie\LaravelSettings\Models\SettingsProperty;
 
 class DatabaseSettingsRepository implements SettingsRepository
 {
     /** @var string|\Illuminate\Database\Eloquent\Model */
-    protected string $propertyModel;
+    protected $propertyModel;
 
-    protected ?string $connection;
+    /** @var string|null  */
+    protected $connection;
 
     public function __construct(array $config)
     {

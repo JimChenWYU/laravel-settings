@@ -8,7 +8,8 @@ use Spatie\LaravelSettings\Events\SettingsSaved;
 
 class SettingsEventSubscriber
 {
-    private SettingsCache $settingsCache;
+    /** @var \Spatie\LaravelSettings\SettingsCache  */
+    private $settingsCache;
 
     public function __construct(SettingsCache $settingsCache)
     {

@@ -16,22 +16,25 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
+        "php": ">=7.2",
         "ext-json": "*",
-        "illuminate/database": "^7.0|^8.24.0",
-        "doctrine/dbal" : "^2.6|^3",
+        "doctrine/dbal": "^2.6|^3",
+        "laravel/framework": "^6.0|^7.0|^8.24.0",
         "phpdocumentor/type-resolver": "^1.4",
-        "spatie/data-transfer-object": "^2.0",
+        "spatie/data-transfer-object": "^1.0|^2.0",
         "spatie/temporary-directory": "^1.2"
     },
     "require-dev": {
-        "ext-redis": "*",
-        "mockery/mockery": "^1.4",
-        "orchestra/testbench": "^5.0|^6.0",
-        "phpunit/phpunit": "^9.1",
-        "psalm/plugin-laravel": "^1.4",
-        "spatie/phpunit-snapshot-assertions": "^4.2",
-        "vimeo/psalm": "^4.2"
+        "mockery/mockery": "^1.3|^1.4",
+        "orchestra/testbench": "^4.0|^5.0|^6.0",
+        "phpunit/phpunit": "^8.5|^9.1",
+        "predis/predis": "^1.1",
+        "psalm/plugin-laravel": "^1.3|^1.4",
+        "spatie/phpunit-snapshot-assertions": "^3.0|^4.2"
+    },
+    "suggest": {
+        "predis/predis": "Flexible and feature-complete Redis client for PHP and HHVM",
+        "ext-redis": "PHP extension for interfacing with redis"
     },
     "autoload": {
         "psr-4": {

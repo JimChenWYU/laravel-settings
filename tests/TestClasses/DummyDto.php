@@ -6,5 +6,6 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class DummyDto extends DataTransferObject
 {
-    public string $name;
+    /** @var string */
+    public $name;
 }

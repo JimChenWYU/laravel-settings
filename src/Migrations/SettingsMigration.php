@@ -6,7 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 
 abstract class SettingsMigration extends Migration
 {
-    protected SettingsMigrator $migrator;
+    /** @var SettingsMigrator */
+    protected $migrator;
 
     abstract public function up();
 

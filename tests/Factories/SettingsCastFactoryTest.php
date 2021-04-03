@@ -17,7 +17,8 @@ class SettingsCastFactoryTest extends TestCase
     public function it_will_not_resolve_a_cast_for_built_in_types()
     {
         $fake = new class {
-            public int $integer;
+            /** @var int */
+            public $integer;
         };
 
         $reflectionProperty = new ReflectionProperty($fake, 'integer');
@@ -31,7 +32,8 @@ class SettingsCastFactoryTest extends TestCase
     public function it_can_resolve_a_global_cast()
     {
         $fake = new class {
-            public DateTime $datetime;
+            /** @var DateTime  */
+            public $datetime;
         };
 
         $reflectionProperty = new ReflectionProperty($fake, 'datetime');
@@ -75,7 +77,7 @@ class SettingsCastFactoryTest extends TestCase
     {
         $fake = new class {
             /** @var \Spatie\LaravelSettings\Tests\TestClasses\DummyDto[] */
-            public array $dto_array;
+            public $dto_array;
         };
 
         $reflectionProperty = new ReflectionProperty($fake, 'dto_array');
@@ -104,7 +106,8 @@ class SettingsCastFactoryTest extends TestCase
     public function it_can_have_a_plain_array_without_cast()
     {
         $fake = new class {
-            public array $array;
+            /** @var array */
+            public $array;
         };
 
         $reflectionProperty = new ReflectionProperty($fake, 'array');
@@ -118,7 +121,8 @@ class SettingsCastFactoryTest extends TestCase
     public function it_can_have_a_nullable_cast()
     {
         $fake = new class {
-            public ?DateTime $array;
+            /** @var DateTime|null  */
+            public $array;
         };
 
         $reflectionProperty = new ReflectionProperty($fake, 'array');
@@ -132,7 +136,7 @@ class SettingsCastFactoryTest extends TestCase
     public function it_can_have_a_nullable_docblock_cast()
     {
         $fake = new class {
-            /** @var ?\DateTime */
+            /** @var \DateTime|null */
             public $array;
         };
 
@@ -149,7 +153,8 @@ class SettingsCastFactoryTest extends TestCase
         $this->withoutGlobalCasts();
 
         $fake = new class {
-            public DateTime $datetime;
+            /** @var DateTime  */
+            public $datetime;
         };
 
         $reflectionProperty = new ReflectionProperty($fake, 'datetime');
@@ -181,7 +186,8 @@ class SettingsCastFactoryTest extends TestCase
     public function it_can_create_a_local_cast_with_an_already_constructed_cast()
     {
         $fake = new class {
-            public DummyDto $dto;
+            /** @var DummyDto  */
+            public $dto;
         };
 
         $reflectionProperty = new ReflectionProperty($fake, 'dto');

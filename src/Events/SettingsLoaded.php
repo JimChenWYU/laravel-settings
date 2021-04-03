@@ -6,7 +6,8 @@ use Spatie\LaravelSettings\Settings;
 
 class SettingsLoaded
 {
-    public Settings $settings;
+    /** @var Settings  */
+    public $settings;
 
     public function __construct(Settings $settings)
     {

@@ -9,13 +9,17 @@ use Symfony\Component\Finder\Finder;
 
 class DiscoverSettings
 {
-    protected array $directories = [];
+    /** @var array  */
+    protected $directories = [];
 
-    protected string $basePath = '';
+    /** @var string  */
+    protected $basePath = '';
 
-    protected string $rootNamespace = '';
+    /** @var string  */
+    protected $rootNamespace = '';
 
-    protected array $ignoredFiles = [];
+    /** @var array  */
+    protected $ignoredFiles = [];
 
     public function __construct()
     {
@@ -59,9 +63,15 @@ class DiscoverSettings
         $files = (new Finder())->files()->in($this->directories);
 
         return collect($files)
-            ->reject(fn (SplFileInfo $file) => in_array($file->getPathname(), $this->ignoredFiles))
-            ->map(fn (SplFileInfo $file) => $this->fullQualifiedClassNameFromFile($file))
-            ->filter(fn (string $settingsClass) => is_subclass_of($settingsClass, Settings::class))
+            ->reject(function (SplFileInfo $file) {
+                return in_array($file->getPathname(), $this->ignoredFiles);
+            })
+            ->map(function (SplFileInfo $file) {
+                return $this->fullQualifiedClassNameFromFile($file);
+            })
+            ->filter(function (string $settingsClass) {
+                return is_subclass_of($settingsClass, Settings::class);
+            })
             ->flatten()
             ->toArray();
     }

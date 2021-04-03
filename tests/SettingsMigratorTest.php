@@ -11,7 +11,8 @@ use Spatie\LaravelSettings\SettingsRepositories\DatabaseSettingsRepository;
 
 class SettingsMigratorTest extends TestCase
 {
-    private SettingsMigrator $settingsMigrator;
+    /** @var SettingsMigrator  */
+    private $settingsMigrator;
 
     protected function setUp(): void
     {
@@ -136,7 +137,9 @@ class SettingsMigratorTest extends TestCase
     {
         $this->settingsMigrator->add('user.name', 'Brent Roose');
 
-        $this->settingsMigrator->update('user.name', fn (string $name) => 'Ruben Van Assche');
+        $this->settingsMigrator->update('user.name', function (string $name) {
+            return 'Ruben Van Assche';
+        });
 
         $this->assertDatabaseHasSetting('user.name', 'Ruben Van Assche');
     }
@@ -146,7 +149,9 @@ class SettingsMigratorTest extends TestCase
     {
         $this->expectException(SettingDoesNotExist::class);
 
-        $this->settingsMigrator->update('user.name', fn (string $name) => 'Ruben Van Assche');
+        $this->settingsMigrator->update('user.name', function (string $name) {
+            return 'Ruben Van Assche';
+        });
     }
 
     /** @test */
@@ -172,7 +177,9 @@ class SettingsMigratorTest extends TestCase
     {
         $this->settingsMigrator->addEncrypted('user.name', 'Brent Roose');
 
-        $this->settingsMigrator->updateEncrypted('user.name', fn (string $name) => 'Ruben Van Assche');
+        $this->settingsMigrator->updateEncrypted('user.name', function (string $name) {
+            return 'Ruben Van Assche';
+        });
 
         $this->assertDatabaseHasEncryptedSetting('user.name', 'Ruben Van Assche');
     }
