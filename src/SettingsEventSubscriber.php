@@ -13,7 +13,7 @@ class SettingsEventSubscriber
 
     public function __construct(SettingsCache $settingsCache)
     {
-$this->settingsCache = $settingsCache;
+        $this->settingsCache = $settingsCache;
     }
 
     public function subscribe(Dispatcher $dispatcher)
