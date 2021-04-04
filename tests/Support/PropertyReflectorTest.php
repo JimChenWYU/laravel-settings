@@ -267,7 +267,7 @@ class PropertyReflectorTest extends TestCase
     {
         $reflection = $this->fakeReflection(function () {
             return new class {
-                /** @var DateTime|null */
+                /** @var ?DateTime */
                 public $property;
             };
         });
@@ -283,7 +283,7 @@ class PropertyReflectorTest extends TestCase
     {
         $reflection = $this->fakeReflection(function () {
             return new class {
-                /** @var DateTime|null */
+                /** @var ?DateTime */
                 public $property;
             };
         });

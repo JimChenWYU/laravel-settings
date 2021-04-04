@@ -10,6 +10,7 @@ use phpDocumentor\Reflection\Types\Array_;
 use phpDocumentor\Reflection\Types\Boolean;
 use phpDocumentor\Reflection\Types\Float_;
 use phpDocumentor\Reflection\Types\Integer;
+use phpDocumentor\Reflection\Types\Mixed_;
 use phpDocumentor\Reflection\Types\Nullable;
 use phpDocumentor\Reflection\Types\Object_;
 use phpDocumentor\Reflection\Types\String_;
@@ -36,37 +37,19 @@ class PropertyReflector
         if ($docblock) {
             preg_match('/@var ((?:(?:[\w?|\\\\<>,\s])+(?:\[])?)+)/', $docblock, $output_array);
 
-            $types = collect(explode('|', $output_array[1]))->map(function ($v) {
-                return trim($v);
-            });
-            if ($types->intersect([
-                'mixed',
-                'int', 'integer',
-                'float', 'double',
-                'bool', 'boolean',
-                'string',
-                'array',
-                'iterable', 'Iterator',
-            ])->isNotEmpty()) {
-                return null;
-            }
-            if ($types->count() === 1) {
-                if (class_exists($types->first()) || interface_exists($types->first())) {
-                    $type = new Object_(new Fqsen('\\' . ltrim($types->first(), '\\')));
-
-                    return $type;
+            if (count($output_array) === 2) {
+                $reflectionType = self::reflectDocblock($reflectionProperty, $output_array[1]);
+                if (!in_array((string)$reflectionType, [
+                    'int', 'integer',
+                    'string',
+                    'float', 'double',
+                    'bool', 'boolean',
+                    'array',
+                ], true)) {
+                    return $reflectionType;
                 }
             }
-
-            if ($types->count() === 2 && $types->contains('null')) {
-                $type = new Object_(new Fqsen('\\' . ltrim($types->first(), '\\')));
-
-                return new Nullable($type);
-            }
-
-            return count($output_array) === 2
-                ? self::reflectDocblock($reflectionProperty, $output_array[1])
-                : null;
+            return null;
         }
 
         if ($reflectionType->isBuiltin()) {
@@ -107,11 +90,22 @@ class PropertyReflector
                 || $resolvedType->getValueType() instanceof Float_
                 || $resolvedType->getValueType() instanceof Integer
                 || $resolvedType->getValueType() instanceof String_
-                || $resolvedType->getValueType() instanceof Object_;
+                || $resolvedType->getValueType() instanceof Object_
+                || $resolvedType->getValueType() instanceof Mixed_;
 
             if ($isValid) {
                 return $resolvedType;
             }
+        }
+
+        if (in_array(get_class($resolvedType), [
+            Boolean::class,
+            Float_::class,
+            Integer::class,
+            String_::class,
+            Object_::class,
+        ], true)) {
+            return $resolvedType;
         }
 
         throw CouldNotResolveDocblockType::create($type, $reflectionProperty);

@@ -10,7 +10,7 @@ class DummyEncryptedSettings extends Settings
     /** @var string */
     public $string;
 
-    /** @var string|null */
+    /** @var ?string */
     public $nullable;
 
     /** @var DateTime */

@@ -2,16 +2,16 @@
 
 namespace Spatie\LaravelSettings\Tests;
 
+use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use DateTime;
 use DateTimeImmutable;
 use DateTimeZone;
-use ErrorException;
-use Illuminate\Database\Events\SchemaLoaded;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use ErrorException;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Database\Events\SchemaLoaded;
 use Illuminate\Support\Str;
 use Spatie\LaravelSettings\Events\LoadingSettings;
 use Spatie\LaravelSettings\Events\SavingSettings;
@@ -33,7 +33,7 @@ class SettingsTest extends TestCase
 {
     use MatchesSnapshots;
 
-    /** @var SettingsMigrator */
+    /** @var SettingsMigrator  */
     private $migrator;
 
     protected function setUp(): void

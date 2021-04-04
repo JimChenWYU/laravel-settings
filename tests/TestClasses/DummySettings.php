@@ -17,7 +17,7 @@ class DummySettings extends Settings
     public $int;
     /** @var array */
     public $array;
-    /** @var string|null */
+    /** @var ?string */
     public $nullable_string;
     /** @var DummyDto */
     public $dto;
@@ -33,7 +33,7 @@ class DummySettings extends Settings
     public $date_time;
     /** @var \Carbon\Carbon */
     public $carbon;
-    /** @var DateTimeZone|null */
+    /** @var ?DateTimeZone */
     public $nullable_date_time_zone;
 
     public static function group(): string
