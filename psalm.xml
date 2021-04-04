@@ -13,6 +13,17 @@
     </projectFiles>
 
     <issueHandlers>
+        <UndefinedClass>
+            <errorLevel type="suppress">
+                <referencedClass name="Illuminate\Database\Events\SchemaLoaded" />
+            </errorLevel>
+        </UndefinedClass>
+        <UndefinedMethod>
+            <errorLevel type="suppress">
+                <referencedMethod name="ReflectionProperty::getType" />
+                <file name="src/Support/PropertyReflector.php" />
+            </errorLevel>
+        </UndefinedMethod>
         <UnusedClosureParam>
             <errorLevel type="suppress">
                 <file name="src/SettingsMapper.php"/>
