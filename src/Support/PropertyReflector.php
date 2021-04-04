@@ -39,7 +39,7 @@ class PropertyReflector
 
             if (count($output_array) === 2) {
                 $reflectionType = self::reflectDocblock($reflectionProperty, $output_array[1]);
-                if (!in_array((string)$reflectionType, [
+                if (! in_array((string)$reflectionType, [
                     'int', 'integer',
                     'string',
                     'float', 'double',
@@ -49,6 +49,7 @@ class PropertyReflector
                     return $reflectionType;
                 }
             }
+
             return null;
         }
 
