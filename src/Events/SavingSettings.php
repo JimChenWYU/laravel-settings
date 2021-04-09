@@ -13,11 +13,17 @@ class SavingSettings
     /** @var Collection */
     public $properties;
 
+    /** @var ?Collection */
+    public $originalValues;
+
     public function __construct(
         Collection $properties,
+        ?Collection $originalValues,
         Settings $settings
     ) {
         $this->properties = $properties;
+
+        $this->originalValues = $originalValues;
 
         $this->settings = $settings;
     }
