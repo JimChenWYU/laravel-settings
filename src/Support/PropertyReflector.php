@@ -127,7 +127,7 @@ class PropertyReflector
         $other = current(array_filter(
             iterator_to_array($compound->getIterator()),
             function (Type $type) {
-                return !$type instanceof Null_;
+                return ! $type instanceof Null_;
             }
         ));
 
