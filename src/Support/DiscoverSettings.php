@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Spatie\LaravelSettings\Settings;
 use SplFileInfo;
 use Symfony\Component\Finder\Finder;
+use Throwable;
 
 class DiscoverSettings
 {
@@ -70,7 +71,11 @@ class DiscoverSettings
                 return $this->fullQualifiedClassNameFromFile($file);
             })
             ->filter(function (string $settingsClass) {
-                return is_subclass_of($settingsClass, Settings::class);
+                try {
+                    return is_subclass_of($settingsClass, Settings::class);
+                } catch (Throwable $e) {
+                    return false;
+                }
             })
             ->flatten()
             ->toArray();
