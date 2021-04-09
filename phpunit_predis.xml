@@ -18,5 +18,7 @@
     </filter>
     <php>
         <env name="REDIS_CLIENT" value="predis"/>
+        <env name="REDIS_HOST" value="redis"/>
+        <env name="REDIS_PASSWORD" value="8iiPH99o#JKUbTlt"/>
     </php>
 </phpunit>
